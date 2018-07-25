@@ -8,8 +8,9 @@ name = {files.name};
 
 
 % 2. Import each file individually
-for idx = 1:size(name,1)
+for idx = 1:numel(name)
     importName = fullfile(input_directory,name{idx});
+    fprintf ('Now Reading %s\n' , importName)
     opts = detectImportOptions(importName);
     opts.EmptyLineRule = 'skip';
     A = readtable(importName,opts);
@@ -39,6 +40,7 @@ BeaconDataTable = array2table(UploadNumbers);
 UploadDates = array2table(UploadDates);
 BeaconDataTable = [BeaconDataTable UploadDates];
 BeaconDataTable.Properties.VariableNames = {'Temp1' 'Pressure' 'Temp2' 'Humidity' 'DewPtTemp' 'MOxO3' 'MOxCO' 'MOxNO2' 'O3WE' 'O3AUX' 'COWE' 'COAUX' 'NOWE' 'NOAUX' 'NO2WE' 'NO2AUX' 'ParticulateHigh' 'ParticulateLow' 'ParticulateMatter' 'CO2' 'temp3' 'time'};
-
+rows_to_delete = all(ismissing(BeaconDataTable),2);
+BeaconDataTable(rows_to_delete,:) = [];
 end
 

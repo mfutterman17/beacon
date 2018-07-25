@@ -1,47 +1,46 @@
-function  baseline 
+function RawData = baseline (RawData, WindowWidth)
 % Calculate CO baseline
-for A = 500:(height(week)-500);
-    window = (week.COAvg((A - 499):(A + 499)));
+COAvg = RawData.COAvg;
+CO2Avg = RawData.CO2Avg;
+baseCO = NaN(size(COAvg));
+baseCO2 = NaN (size(CO2Avg));
+halfWidth = floor(WindowWidth/2);
+halfWidthmin1 = halfWidth - 1;
+parfor A = (halfWidth:(height(RawData)-halfWidth));
+    window = (COAvg((A - halfWidthmin1):(A + halfWidthmin1)));
     base = mean(window(window < prctile(window,25)));
-    week.baseCO (A) = base;
-     if A == 1010827
-        fprintf 'CO base halfway processed'
-    end
-end
- 
-fprintf 'CO base complete'
-
-% Calculate CO2 baseline
-for A = 500:(height(week)-500);
-    window = (week.CO2Avg((A - 499):(A + 499)));
-    base = mean(window(window < prctile(window,25)));
-    week.baseCO2 (A) = base;
-    if A == 1010827
-        fprintf 'CO2 base halfway processed'
+    baseCO (A) = base;
+    window2 = (CO2Avg((A - halfWidthmin1):(A + halfWidthmin1)));
+    base2 = mean(window2(window2 < prctile(window2,25)));
+    baseCO2 (A) = base2;
+    if mod(A,1000) == 0
+        fprintf('  A = %d\n', A)
     end
 end
 
-fprintf 'CO2 base complete'
+RawData.baseCO = baseCO;
+RawData.baseCO2 = baseCO2;
+
+fprintf 'base complete'
 
 % For times within 30 minutes of ends
-for A = 1:499 
-    week.baseCO2(A) = week.baseCO2(500);
-    week.baseCO(A) = week.baseCO(500);
-end
+xxbeginning = [1:halfWidthmin1];
+RawData.baseCO2(xxbeginning) = RawData.baseCO2(halfWidth);
+RawData.baseCO(xxbeginning) = RawData.baseCO(halfWidth);
 
 fprintf 'beginning fill complete'
 
-for A = (height(week)-500):(height(week))
-    week.baseCO2(A) = week.baseCO2(height(week)-500);
-    week.baseCO(A) = week.baseCO(height(week)-500);
-end
+A = (height(RawData)-halfWidthmin1):(height(RawData));
+RawData.baseCO2(A) = RawData.baseCO2(height(RawData)-halfWidth);
+RawData.baseCO(A) = RawData.baseCO(height(RawData)-halfWidth);
+
 
 fprintf 'end fill complete'
 
 % Make delta CO variable
-week.deltaCO = week.COAvg - week.baseCO;
+RawData.deltaCO = RawData.COAvg - RawData.baseCO;
 
 % Made delta CO2 variable
-week.deltaCO2 = week.CO2Avg - week.baseCO2;
+RawData.deltaCO2 = RawData.CO2Avg - RawData.baseCO2;
 end
 
