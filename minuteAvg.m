@@ -32,8 +32,9 @@ end
 
 
 RawData = sortrows(RawData, 3);
-RawData.COAvg = movmean(RawData.CO, minutes(1),'omitnan','SamplePoints',RawData.time);
-RawData.CO2Avg = movmean(RawData.CO2, minutes(1),'omitnan','SamplePoints',RawData.time);
+time = RawData.time;
+RawData.COAvg = movmean(RawData.CO,minutes(1),'omitnan','SamplePoints',time);
+RawData.CO2Avg = movmean(RawData.CO2,minutes(1),'omitnan','SamplePoints',time);
 
 
 end
