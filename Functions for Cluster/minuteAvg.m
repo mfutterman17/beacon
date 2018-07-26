@@ -5,6 +5,7 @@ RawData = RawData(:,{'COWE' 'COAUX' 'CO2' 'time'});
 RawData.CO = RawData.COWE - RawData.COAUX;
 RawData.COWE = [];
 RawData.COAUX = [];
+RawData = movevars(RawData, 'CO', 'Before', 'time');
 
 %Convert zeros to missing
 RawData.CO = standardizeMissing(RawData.CO, [NaN -999 0]);
@@ -31,14 +32,9 @@ end
 
 
 RawData = sortrows(RawData, 3);
-<<<<<<< HEAD
-RawData.COAvg = movmean(RawData.CO,minutes(1),'omitnan','SamplePoints',RawData.time);
-RawData.CO2Avg = movmean(RawData.CO2,minutes(1),'omitnan','SamplePoints',RawData.time);
-=======
 time = RawData.time;
 RawData.COAvg = movmean(RawData.CO,minutes(1),'omitnan','SamplePoints',time);
 RawData.CO2Avg = movmean(RawData.CO2,minutes(1),'omitnan','SamplePoints',time);
->>>>>>> 51df85aefa753099b89232de515846ce34f18975
 
 
 end
