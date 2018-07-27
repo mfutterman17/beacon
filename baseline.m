@@ -93,7 +93,6 @@ fprintf 'CO2 peaks calculated'
         RawData.PlumeCOAvg = standardizeMissing (RawData.PlumeCOAvg, [0 NaN]);
         RawData.PlumeCO2Avg = standardizeMissing (RawData.PlumeCO2Avg, [0 NaN]);
 
-Find local minima
 % find indices of CO plume peaks
     PlumeIndex = [1:height(RawData)]'; 
     PlumeIndex (ismissing(RawData.PlumeCOdelta)) = [];
