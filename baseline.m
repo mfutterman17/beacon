@@ -70,7 +70,7 @@ fprintf 'CO2 peaks calculated'
     % Make an array for time window centers
         timeWindow = RawData.time(PeakIndex);
     % Find "plumes"- CO peaks with CO2 peaks within 30 sec
-        parfor index = 1:length(PeakIndex)
+        for index = 1:length(PeakIndex)
             A = PeakIndex(index);
             B = timeWindow (index);
             indexbefore = find (RawData.CO2PeakTimes > (B) - seconds(30));
@@ -99,7 +99,7 @@ Find local minima
     PlumeIndex (ismissing(RawData.PlumeCOdelta)) = [];
 
 %set an index window to look for the minima
-    parfor B = 1:(length(PlumeIndex)-1)
+    for B = 1:(length(PlumeIndex)-1)
         COmin = min((RawData.deltaCO((PlumeIndex(B)):(PlumeIndex(B+1)))),[] ,'omitnan');
         % find possible indices of COmin in COAvg
         COminIndex = find ((RawData.deltaCO == COmin ));
@@ -120,7 +120,7 @@ Find local minima
 % find inidicies of minimum values
 minIndices = find (~ismissing(RawData.COmin));
 % find COAvg values at indices
-parfor A = 1:length(minIndices)
+for A = 1:length(minIndices)
     RawData.COminAvgVal (minIndices(A)) = RawData.COAvg (minIndices(A));
 end
 RawData.COminAvgVal = standardizeMissing (RawData.COminAvgVal, [0]);
