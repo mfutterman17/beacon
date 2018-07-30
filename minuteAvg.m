@@ -8,6 +8,7 @@ RawData.COAUX = [];
 
 %Convert zeros to missing
 RawData.CO = standardizeMissing(RawData.CO, [NaN -999 0]);
+RawData.CO2 = standardizeMissing(RawData.CO2,[NaN -999 0]);
 
 dupTimes = sort(RawData.time);
 TF = (diff(dupTimes) == 0);
