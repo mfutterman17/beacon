@@ -47,6 +47,12 @@ RawData.deltaCO2 = RawData.CO2Avg - RawData.baseCO2;
 COPeaks = islocalmax(RawData.deltaCO,'MinSeparation',minutes(3),'SamplePoints',RawData.time);
 RawData.COPeaks = RawData.deltaCO;
 RawData.COPeaks (~COPeaks) = NaN;
+RawData.PlumeCOAvg = RawData.COAvg;
+RawData.PlumeCOAvg (~COPeaks) = NaN;
+
+% find indices of CO peaks
+PlumeIndex = [1:height(RawData)]'; 
+PlumeIndex (ismissing(RawData.COPeaks)) = [];
 
 fprintf 'CO peaks calculated. '
 
@@ -54,6 +60,8 @@ fprintf 'CO peaks calculated. '
 CO2Peaks = islocalmax(RawData.deltaCO2,'MinSeparation',minutes(3),'SamplePoints',RawData.time);
 RawData.CO2Peaks = RawData.deltaCO2;
 RawData.CO2Peaks (~CO2Peaks) = NaN;
+RawData.PlumeCO2Avg = RawData.CO2Avg;
+RawData.PlumeCO2Avg (~CO2Peaks) = NaN;
 
 fprintf 'CO2 peaks calculated. '
 
@@ -61,6 +69,7 @@ fprintf 'CO2 peaks calculated. '
 % find indices of CO peaks
     PlumeIndex = [1:height(RawData)]'; 
     PlumeIndex (ismissing(RawData.COPeaks)) = [];
+
 
 %set an index window to look for the minima
     for B = 1:(length(PlumeIndex)-1)
