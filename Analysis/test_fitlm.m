@@ -1,7 +1,7 @@
 function [outputArg1,outputArg2] = test_fitlm(RawData,length)
 %% testing fitlm function on the cluster
 
-COminIndex = find (~ismissing (RawData.COmin);
+COminIndex = find (~ismissing (RawData.COmin));
 
 for A = 1:(length)
     Istart = COminIndex(A);
