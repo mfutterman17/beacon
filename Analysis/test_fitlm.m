@@ -1,11 +1,12 @@
-function [outputArg1,outputArg2] = test_fitlm(RawData,length)
+function [RawData] = test_fitlm(RawData,qty)
 %% testing fitlm function on the cluster
 
 COminIndex = find (~ismissing (RawData.COmin));
 PlumeIndex = [1:height(RawData)]';
 PlumeIndex (ismissing(RawData.COPeaks)) = [];
+PlumeIndex = PlumeIndex([1:qty]);
 
-for A = 1:(length)
+for A = 1:(qty)
     Istart = COminIndex(A);
     Iend = COminIndex(A + 1);
     mdl = fitlm (RawData.deltaCO2([Istart:Iend]), RawData.deltaCO([Istart:Iend]));
