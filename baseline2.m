@@ -95,7 +95,7 @@ PlumeIndex (ismissing(RawData.COPeaks)) = [];
 for A = 1:(length(COminIndex)-1)
     Istart = COminIndex(A);
     Iend = COminIndex(A + 1);
-    if Iend ~= Istart + 1
+    if Iend ~= (Istart + 1)
         mdl = fitlm (RawData.deltaCO2([Istart:Iend]), RawData.deltaCO([Istart:Iend]));
         if mdl.Rsquared.Adjusted > 0.6
             X = PlumeIndex(Istart < PlumeIndex);
@@ -103,9 +103,14 @@ for A = 1:(length(COminIndex)-1)
             if length(indices) > 1
                 indices(:,2) = RawData.deltaCO(indices);
                 index = (indices(find(indices(:,2) == (max(indices(:,2)))), 1));
-                RawData.PlumeCO(index) = RawData.COAvg(index);
-                RawData.PlumeMin(Istart) = RawData.COAvg(Istart);
-                RawData.PlumeMin(Iend) = RawData.COAvg(Iend);
+                line = polyfit (RawData.deltaCO2([Istart:Iend]), RawData.deltaCO([Istart:Iend]),1);
+                slopeDelt = line(1,1);
+                if slopeDelt > 0
+                    RawData.PlumeCO(index) = RawData.COAvg(index);
+                    RawData.PlumeMin(Istart) = RawData.COAvg(Istart);
+                    RawData.PlumeMin(Iend) = RawData.COAvg(Iend);
+                    RawData.EF (indices) = slopeDelt;
+                end
             end
             if length(indices) == 1
                 line = polyfit (RawData.deltaCO2([Istart:Iend]), RawData.deltaCO([Istart:Iend]),1);
