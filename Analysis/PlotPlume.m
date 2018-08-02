@@ -2,7 +2,7 @@ function [slopeDelt, SlopeAvg] = PlotPlume(dataset,index)
 %UNTITLED3 Summary of this function goes here
 %Plotting a Plume
 % define indices vector
-minIndices = find (~ismissing(dataset.COmin));
+minIndices = find (~ismissing(dataset.EF));
 
 %Set bordering minimums
     tstart = dataset.time(minIndices(index));

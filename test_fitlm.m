@@ -28,6 +28,7 @@ for A = 1:(qty)
             RawData.PlumeMin(Istart) = RawData.COAvg(Istart);
             RawData.PlumeMin(Iend) = RawData.COAvg(Iend);
             RawData.EF(indices) = slopeDelt;
+            end
         end
     end
     clearvars indices index 
