@@ -109,7 +109,7 @@ for A = 1:(length(COminIndex)-1)
                     RawData.PlumeCO(index) = RawData.COAvg(index);
                     RawData.PlumeMin(Istart) = RawData.COAvg(Istart);
                     RawData.PlumeMin(Iend) = RawData.COAvg(Iend);
-                    RawData.EF (indices) = slopeDelt;
+                    RawData.EF (index) = slopeDelt;
                 end
             end
             if length(indices) == 1
