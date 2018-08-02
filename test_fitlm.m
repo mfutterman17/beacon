@@ -21,7 +21,7 @@ for A = 1:(qty)
             RawData.PlumeMin(Iend) = RawData.COAvg(Iend);
         end
         if length(indices) == 1 
-           line = polyfit (dataset.deltaCO2([Istart:Iend]), dataset.deltaCO([Istart:Iend]),1);
+           line = polyfit (RawData.deltaCO2([Istart:Iend]), RawData.deltaCO([Istart:Iend]),1);
             slopeDelt = line(1,1);
             if slopeDelt > 0
             RawData.PlumeCO(indices) = RawData.COAvg(indices);
