@@ -1,8 +1,6 @@
 function [slopeDelt, SlopeAvg] = PlotPlume(dataset,index)
-%UNTITLED3 Summary of this function goes here
-%Plotting a Plume
 % define indices vector
-minIndices = find (~ismissing(dataset.EF));
+minIndices = find (~ismissing(dataset.PlumeMin));
 
 %Set bordering minimums
     tstart = dataset.time(minIndices(index));
@@ -24,7 +22,7 @@ figure ('Name', 'Plume', 'NumberTitle','off');
     %plot baseline
     b1 = plot (dataset.time, dataset.baseCO, 'k');
     ylabel 'CO (V)'
-    p3 = scatter(dataset.time, dataset.PlumeCOAvg, 'r*');
+    p3 = scatter(dataset.time, dataset.PlumeCO, 'r*');
     p4 = scatter(dataset.time, dataset.COminAvgVal, 'go');
     legend ('CO','CO base','max','min', 'CO2', 'CO2 base', 'Location', 'southoutside');
 
