@@ -20,15 +20,20 @@ for A = 1:(qty)
             RawData.PlumeMin(Istart) = RawData.COAvg(Istart);
             RawData.PlumeMin(Iend) = RawData.COAvg(Iend);
         end
-        if length(indices) == 1
+        if length(indices) == 1 
+           line = polyfit (dataset.deltaCO2([Istart:Iend]), dataset.deltaCO([Istart:Iend]),1);
+            slopeDelt = line(1,1);
+            if slopeDelt > 0
             RawData.PlumeCO(indices) = RawData.COAvg(indices);
             RawData.PlumeMin(Istart) = RawData.COAvg(Istart);
             RawData.PlumeMin(Iend) = RawData.COAvg(Iend);
+            RawData.EF(indices) = slopeDelt;
         end
     end
-    clearvars indices index
+    clearvars indices index 
 end
 RawData.PlumeMin = standardizeMissing(RawData.PlumeMin, [0 NaN]);
 RawData.PlumeCO = standardizeMissing(RawData.PlumeCO, [0 NaN]);
+RawData.EF = standardizeMissing(RawData.EF, [0 NaN]);
 end
 
