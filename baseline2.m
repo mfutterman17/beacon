@@ -84,11 +84,16 @@ for B = 1:(length(PlumeIndex)-1)
         end
     end
 end
+% convert empty rows in COmin to NaN
+RawData.COmin = standardizeMissing(RawData.COmin, [NaN -999 0]);
 
-COminIndex = find (~ismissing(RawData.COmin));
+COminIndex = find (~ismissing (RawData.COmin));
+PlumeIndex = [1:height(RawData)]';
+PlumeIndex (ismissing(RawData.COPeaks)) = [];
+PlumeIndex = PlumeIndex([1:qty]);
 
-%%Calculate Rsquare and keep only plumes w/ Rsquare > 0.6
-for A = 1:(length(COminIndex)-1)
+%find plumes where rsquared > 0.6 and slope > 0
+for A = 1:(qty)
     Istart = COminIndex(A);
     Iend = COminIndex(A + 1);
     mdl = fitlm (RawData.deltaCO2([Istart:Iend]), RawData.deltaCO([Istart:Iend]));
@@ -102,31 +107,22 @@ for A = 1:(length(COminIndex)-1)
             RawData.PlumeMin(Istart) = RawData.COAvg(Istart);
             RawData.PlumeMin(Iend) = RawData.COAvg(Iend);
         end
-        if length(indices) == 1
+        if length(indices) == 1 
+           line = polyfit (RawData.deltaCO2([Istart:Iend]), RawData.deltaCO([Istart:Iend]),1);
+            slopeDelt = line(1,1);
+            if slopeDelt > 0
             RawData.PlumeCO(indices) = RawData.COAvg(indices);
             RawData.PlumeMin(Istart) = RawData.COAvg(Istart);
             RawData.PlumeMin(Iend) = RawData.COAvg(Iend);
+            RawData.EF(indices) = slopeDelt;
+            end
         end
     end
-    clearvars indices index
+    clearvars indices index 
 end
 RawData.PlumeMin = standardizeMissing(RawData.PlumeMin, [0 NaN]);
 RawData.PlumeCO = standardizeMissing(RawData.PlumeCO, [0 NaN]);
-
-%% convert empty rows in COmin to NaN
-RawData.COmin = standardizeMissing(RawData.COmin, [NaN -999 0]);
-% find inidicies of minimum values
-minIndices = find (~ismissing(RawData.COmin));
-% find COAvg values at indices
-for A = 1:length(minIndices)
-    RawData.COminAvgVal (minIndices(A)) = RawData.COAvg (minIndices(A));
-end
-RawData.COminAvgVal = standardizeMissing (RawData.COminAvgVal, [0]);
-
-%find inidicies of minimum values
-minIndices = find (~ismissing(RawData.COmin));
-
-
+RawData.EF = standardizeMissing(RawData.EF, [0 NaN]);
 
 end
 
