@@ -1,10 +1,17 @@
 function [slopeDelt, SlopeAvg] = PlotPlume(dataset,index)
 % define indices vector
 minIndices = find (~ismissing(dataset.PlumeMin));
+B = [1:2:(length(minIndices)-1)]';
+for A = 1:length(B)
+    PlumeRange(B(A),1) = minIndices(B(A));
+    PlumeRange (B(A),2) = minIndices(B(A)+1);
+end
+PlumeRange = standardizeMissing(PlumeRange, [0 NaN]);
+PlumeRange(ismissing(PlumeRange(:,1)),:) = [];
 
 %Set bordering minimums
-    tstart = dataset.time(minIndices(index));
-    tend = dataset.time(minIndices(index + 1));
+    tstart = dataset.time(PlumeRange(index,1));
+    tend = dataset.time(PlumeRange(index,2));
 
 %Plot CO and CO2 
 figure ('Name', 'Plume', 'NumberTitle','off');
@@ -23,7 +30,7 @@ figure ('Name', 'Plume', 'NumberTitle','off');
     b1 = plot (dataset.time, dataset.baseCO, 'k');
     ylabel 'CO (V)'
     p3 = scatter(dataset.time, dataset.PlumeCO, 'r*');
-    p4 = scatter(dataset.time, dataset.COminAvgVal, 'go');
+    p4 = scatter(dataset.time, dataset.PlumeMin, 'go');
     legend ('CO','CO base','max','min', 'CO2', 'CO2 base', 'Location', 'southoutside');
 
 %Title Plume chart
@@ -39,8 +46,8 @@ title ( [titleStart ' to ' titleEnd] )
 hold off
 
 %Plot scatter from deltas
-Istart = minIndices(index);
-Iend = minIndices (index+1);
+Istart = PlumeRange(index,1);
+Iend = PlumeRange(index,2);
 figure ('Name', 'Scatter', 'NumberTitle','off');
 scatter (dataset.deltaCO2([Istart:Iend]), dataset.deltaCO([Istart:Iend]));
 xlabel 'delta CO2 (ppm)'
@@ -55,8 +62,6 @@ hold off
 slopeDelt = line(1,1)
 
 %Plot scatter from Avgs
-Istart = minIndices(index);
-Iend = minIndices (index+1);
 figure ('Name', 'Scatter', 'NumberTitle','off');
 scatter (dataset.CO2Avg([Istart:Iend]), dataset.COAvg([Istart:Iend]));
 xlabel 'CO2 (ppm)'
