@@ -1,7 +1,7 @@
 function RawData = minuteAvg(RawData)
 %%Pull out CO and CO2 data
 
-RawData = RawData(:,{'COWE' 'COAUX' 'CO2' 'time'});
+RawData = RawData(:,{'Temp2' 'COWE' 'COAUX' 'CO2' 'time'});
 RawData.CO = RawData.COWE - RawData.COAUX;
 RawData.COWE = [];
 RawData.COAUX = [];
@@ -31,7 +31,7 @@ dups = RawData(locations,:);
 end
 
 
-RawData = sortrows(RawData, 2);
+RawData = sortrows(RawData, 3);
 RawData.COAvg = movmean(RawData.CO,minutes(1),'omitnan','SamplePoints',RawData.time);
 RawData.CO2Avg = movmean(RawData.CO2,minutes(1),'omitnan','SamplePoints',RawData.time);
 

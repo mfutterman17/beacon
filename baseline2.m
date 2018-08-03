@@ -46,8 +46,8 @@ RawData.deltaCO2 = RawData.CO2Avg - RawData.baseCO2;
 
 % find CO peaks
 [COPeaks, prominence] = islocalmax(RawData.deltaCO,'MinSeparation',minutes(3),'SamplePoints',RawData.time);
-% identify peaks w/ promincence < 0.025 
-tooLow = find (prominence < 0.025);
+% identify peaks w/ promincence < 0.008 
+tooLow = find (prominence < 0.008);
 
 % establish CO peaks
 RawData.COPeaks = RawData.deltaCO;
