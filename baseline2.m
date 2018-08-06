@@ -62,8 +62,8 @@ fprintf 'CO peaks calculated. '
 
 % find CO2 peaks
 [CO2Peaks, prominence] = islocalmax(RawData.deltaCO2,'MinSeparation',minutes(3),'SamplePoints',RawData.time);
-% identify peaks w/ promincence < 0.025 
-tooLow = find (prominence < 0.025);
+% identify peaks w/ promincence < 0.008 
+tooLow = find (prominence < 0.008);
 
 %establish CO2 peaks
 RawData.CO2Peaks = RawData.deltaCO2;
