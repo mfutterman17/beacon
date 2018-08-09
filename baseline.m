@@ -13,9 +13,6 @@ parfor A = (halfWidth:(height(RawData)-halfWidth))
     window2 = (CO2Avg((A - halfWidthmin1):(A + halfWidthmin1)));
     base2 = mean(window2(window2 < prctile(window2,25)));
     baseCO2 (A) = base2;
-    if mod(A,1000) == 0
-        fprintf('  A = %d\n', A)
-    end
 end
 
 RawData.baseCO = baseCO;
