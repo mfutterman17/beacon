@@ -1,0 +1,33 @@
+function Sundays(dataset)
+
+
+% make table for sundays
+varNames = {'day', 'weekday'};
+varTypes = {'double', 'double'};
+sundays = table ('Size', [0 2], 'VariableTypes', varTypes);
+sundays.Properties.VariableNames = varNames;
+
+sundays = unique (day(baselines.Width500.time (weekdays == 1)));
+week1 = find (days == 2);
+for A = 3:8
+     w = find (days == A);
+     week2 = [week2 ; w]; 
+end
+week2 = find (days == [9:15]);
+
+week3 = find (days == [16:22]);
+week4 = find (days == [23:29]);
+
+week2 = [];
+for A = 2:9
+    if week2 == []
+       week2 = find (days == A);
+    else
+        w = find (days == A);
+        week2 = [week2 ; w];
+    end 
+end
+
+week2 = days (days == [9:16]);
+
+
