@@ -1,10 +1,13 @@
 function [dataSet] = plumeDataWeekdays(dataSet)
 % make summary table to store data
 varNames = {'Condition', 'numPlumes', 'meanEF', 'medianEF', 'meanR', 'medianR', 'meanP', 'medianP', 'meanTemp', 'medianTemp', 'meanTempPlumes', 'medianTempPlumes'};
-varTypes = {'cell' , 'double', 'double', 'double', 'double', 'double', 'double', 'double', 'double', 'double', 'double', 'double'};
-summary = table ('Size', [2 12], 'VariableTypes', varTypes);
+X = zeros ([2 11]);
+Y = ({'none'; 'Rsqr > 0.6'});
+X = array2table (X);
+Y = array2table (Y);
+summary = [Y X];
 summary.Properties.VariableNames = varNames;
-summary.Condition = {'none'; 'Rsqr > 0.6'};
+
 
 %% for width 500
 % calculate number of plumes

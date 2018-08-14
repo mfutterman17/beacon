@@ -17,16 +17,28 @@ WindowWidth = [500; 750];
     fprintf 'Avg Complete'
 
     output = output_structure (RawData,WindowWidth);
+
+    fprintf 'output_structure complete'
     
     output = plumeData (output);
+
+     fprintf 'plumeData  complete'
     
     output = weekdaysOnly (output);
     
+    fprintf 'weekdaysOnly complete'
+
     output = ampm (output);
     
+    fprintf 'ampm complete'
+
     output = plumeDataWeekdays (output);
     
+    fprintf 'plumeDataWeekdays complete'
+
     output = plumeDataWkdyAMPM (output);
+
+    fprintf 'plumeDataWkdyAMPM complete'
 
     save('/global/home/users/mfutterman/matlab/beacon/results/sheldon_2017_08_2min.mat','output')
 

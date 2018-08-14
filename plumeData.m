@@ -25,10 +25,10 @@ summary.meanR (1) = mean (Plumes1.rsquare, 'omitnan');
 summary.medianR (1) = median (Plumes1.rsquare, 'omitnan'); 
 summary.meanP (1) = mean (Plumes1.pCO,'omitnan');
 summary.medianP (1) = median (Plumes1.pCO, 'omitnan');
-summary.meanTemp (1) = mean (dataset.Temp2, 'ominan');
-summary.medianTemp (1) = median (dataset.Temp2, 'ominan');
+summary.meanTemp (1) = mean (dataSet.Width500.Temp2, 'omitnan');
+summary.medianTemp (1) = median (dataSet.Width500.Temp2, 'omitnan');
 summary.meanTempPlumes (1) = mean (Plumes1.Temp2, 'omitnan');
-summary.medianTempPlumes (2) = median (Plumes2.Temp2, 'ominan');
+summary.medianTempPlumes (1) = median (Plumes1.Temp2, 'omitnan');
 
 %% Rsquar% calculate number of plumes
 numPlumes = find (Plumes1.rsquare > 0.6);
@@ -45,10 +45,10 @@ summary.meanR (2) = mean (Plumes2.rsquare, 'omitnan');
 summary.medianR (2) = median (Plumes2.rsquare, 'omitnan'); 
 summary.meanP (2) = mean (Plumes2.pCO,'omitnan');
 summary.medianP (2) = median (Plumes2.pCO, 'omitnan');
-summary.meanTemp (2) = mean (dataset.Temp2, 'ominan');
-summary.medianTemp (2) = median (dataset.Temp2, 'ominan');
+summary.meanTemp (2) = mean (dataSet.Width500.Temp2, 'omitnan');
+summary.medianTemp (2) = median (dataSet.Width500.Temp2, 'omitnan');
 summary.meanTempPlumes (2) = mean (Plumes2.Temp2, 'omitnan');
-summary.medianTempPlumes (2) = median (Plumes2.Temp2, 'ominan');
+summary.medianTempPlumes (2) = median (Plumes2.Temp2, 'omitnan');
 
 % save summary to output structure
 plumeStruct500.summary = summary;
@@ -72,10 +72,10 @@ summary.meanR (1) = mean (Plumes1.rsquare, 'omitnan');
 summary.medianR (1) = median (Plumes1.rsquare, 'omitnan'); 
 summary.meanP (1) = mean (Plumes1.pCO,'omitnan');
 summary.medianP (1) = median (Plumes1.pCO, 'omitnan');
-summary.meanTemp (1) = mean (dataset.Temp2, 'ominan');
-summary.medianTemp (1) = median (dataset.Temp2, 'ominan');
+summary.meanTemp (1) = mean (dataSet.Width750.Temp2, 'omitnan');
+summary.medianTemp (1) = median (dataSet.Width750.Temp2, 'omitnan');
 summary.meanTempPlumes (1) = mean (Plumes1.Temp2, 'omitnan');
-summary.medianTempPlumes (2) = median (Plumes2.Temp2, 'ominan');
+summary.medianTempPlumes (1) = median (Plumes1.Temp2, 'omitnan');
 
 %% Rsquare calculate number of plumes
 numPlumes = find (Plumes1.rsquare > 0.6);
@@ -92,10 +92,10 @@ summary.meanR (2) = mean (Plumes2.rsquare, 'omitnan');
 summary.medianR (2) = median (Plumes2.rsquare, 'omitnan'); 
 summary.meanP (2) = mean (Plumes2.pCO,'omitnan');
 summary.medianP (2) = median (Plumes2.pCO, 'omitnan');
-summary.meanTemp (2) = mean (dataset.Temp2, 'ominan');
-summary.medianTemp (2) = median (dataset.Temp2, 'ominan');
+summary.meanTemp (2) = mean (dataSet.Width750.Temp2, 'omitnan');
+summary.medianTemp (2) = median (dataSet.Width750.Temp2, 'omitnan');
 summary.meanTempPlumes (2) = mean (Plumes2.Temp2, 'omitnan');
-summary.medianTempPlumes (2) = median (Plumes2.Temp2, 'ominan');
+summary.medianTempPlumes (2) = median (Plumes2.Temp2, 'omitnan');
 
 % save summary to output structure
 plumeStruct750.summary = summary;
