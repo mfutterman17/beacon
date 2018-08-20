@@ -3,7 +3,7 @@ function PlotWeek (dataSet,tstart, tend, name)
 % define indices vector
 
 %Plot CO and CO2
-figure ('Name', 'Week', 'NumberTitle','off');
+figure
 
 % Plot CO2
 yyaxis right
