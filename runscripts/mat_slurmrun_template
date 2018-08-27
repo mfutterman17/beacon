@@ -1,0 +1,54 @@
+#!/bin/bash
+# Job Name (can be set to whatever):
+#SBATCH --job-name=baseline
+#
+# Partition (needs to be a specific value, either savio or savio2_bigmem normally):
+#SBATCH --partition=savio2_bigmem
+#
+# Account (controls how we are charged for computer time; co_aiolos is free):
+#SBATCH --account=co_aiolos
+#
+# QoS (controls what resources and priority the job has):
+#SBATCH --qos=aiolos_bigmem2_normal
+#
+# Resources to use (max number of nodes allowed is determined by the QoS; 
+#   the number of tasks per node is determined by the partition):
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=20
+#
+# Wall clock limit (different QoSes have different max clock times, if you
+#    request this greater than that maximum, the job will never start):
+#SBATCH --time=24:00:00
+#
+# Edit the --mail-user line to be your email address. With --mail-type=all,
+#    you'll receive an email for any change in the job start (started, ended,
+#    failed, canceled, preempted)
+#SBATCH --mail-user=mfutterman@berkeley.edu
+#SBATCH --mail-type=all
+#
+## Run command
+
+# The MATLAB_NUM_THREADS environmental variable is used in the runscript to open a
+# parallel pool of the appropriate size. The SLURM_NTASKS_PER_NODE variable is 
+# automatically set by the scheduler to the value of the number of available MPI
+# tasks per node. In theory, MATLAB could run in parallel across multiple nodes,
+# but I have not tested this. In that case, exchanging SLURM_NTASKS_PER_NODE for
+# SLURM_NTASKS would probably be better.
+export MATLAB_NUM_THREADS=$SLURM_NTASKS_PER_NODE
+
+# You can also use other environmental variables to control certain aspects of how
+# your Matlab program runs. In general, I only recommend using this for program-wide
+# settings that are different when running in batch vs. interactive mode. For instance,
+# in some of my scripts, I check that MATLAB_DISPLAY is 0 to disable certain GUI elements.
+export MATLAB_DISPLAY=0
+
+# This command starts Matlab and deliberately disables the GUI and the startup splash screen.
+# The -r option tells Matlab a command to run as soon as it starts; this is best used to run
+# a Matlab script that launches your actual program. See the runscript template for an example.
+matlab -nosplash -nodisplay -r "run('baseline_runscript.m')"
+
+# Capture the exit code Matlab gives and exit this script with it. This will tell the scheduler
+# if this job succeeded or failed. That will be passed along in any email notification, and is
+# also important if you have jobs with a dependency on this one.
+MATLAB_EXIT=$?
+exit $MATLAB_EXIT
