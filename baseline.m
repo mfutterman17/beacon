@@ -1,4 +1,4 @@
-function RawData = baseline2 (RawData, WindowWidth)
+function RawData = baseline (RawData, WindowWidth)
 % Calculate CO baseline
 COAvg = RawData.COAvg;
 CO2Avg = RawData.CO2Avg;
