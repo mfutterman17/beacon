@@ -1,4 +1,4 @@
-function RawData = baseline2 (RawData, WindowWidth)
+function RawData = baseline (RawData, WindowWidth)
 % Calculate CO baseline
 COAvg = RawData.COAvg;
 CO2Avg = RawData.CO2Avg;
@@ -41,7 +41,7 @@ RawData.deltaCO = RawData.COAvg - RawData.baseCO;
 RawData.deltaCO2 = RawData.CO2Avg - RawData.baseCO2;
 
 % find CO peaks
-[COPeaks, prominence] = islocalmax(RawData.deltaCO,'MinSeparation',minutes(2),'SamplePoints',RawData.time);
+[COPeaks, prominence] = islocalmax(RawData.deltaCO,'MinSeparation',minutes(3),'SamplePoints',RawData.time);
 RawData.COPeaks = RawData.deltaCO;
 RawData.COPeaks (~COPeaks) = NaN;
 RawData.pCO = prominence;
@@ -49,7 +49,7 @@ RawData.pCO = prominence;
 fprintf 'CO peaks calculated. '
 
 % find CO2 peaks
-CO2Peaks = islocalmax(RawData.deltaCO2,'MinSeparation',minutes(2),'SamplePoints',RawData.time);
+CO2Peaks = islocalmax(RawData.deltaCO2,'MinSeparation',minutes(3),'SamplePoints',RawData.time);
 RawData.CO2Peaks = RawData.deltaCO2;
 RawData.CO2Peaks (~CO2Peaks) = NaN;
 
