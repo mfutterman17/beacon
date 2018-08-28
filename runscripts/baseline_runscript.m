@@ -6,35 +6,10 @@ fprintf 'Path added'
 WindowWidth = [750];
 
      
-% laney 2017/08
 
-    BeaconDataTable = upload('/global/home/users/mfutterman/mycondo/beacondata/laney/data/2017_08');
+% albany  2018/02
 
-    fprintf 'Upload Complete'
-
-    RawData = minuteAvg(BeaconDataTable);
-
-    fprintf 'Avg Complete'
-
-    output = output_structure (RawData,WindowWidth);
-    
-    output = plumeData (output);
-    
-    output = weekdaysOnly (output);
-    
-    output = ampm (output);
-    
-    output = plumeDataWeekdays (output);
-    
-    output = plumeDataWkdyAMPM (output);
-
-    save('/global/home/users/mfutterman/matlab/beacon/results/results_8_28/laney_2017_08_3min.mat','output')
-
-    fprintf 'Saved Output File: laney_2017_08 3min. '
-
-% laney 2017/09
-
-    BeaconDataTable = upload('/global/home/users/mfutterman/mycondo/beacondata/laney/data/2017_09');
+    BeaconDataTable = upload('/global/home/users/mfutterman/mycondo/beacondata/albany/data/2018_02');
 
     fprintf 'Upload Complete'
 
@@ -54,39 +29,13 @@ WindowWidth = [750];
     
     output = plumeDataWkdyAMPM (output);
 
-    save('/global/home/users/mfutterman/matlab/beacon/results/results_8_28/laney_2017_09_3min.mat','output')
+    save('/global/home/users/mfutterman/matlab/beacon/results/results_8_28/albany_2018_02_3min.mat','output')
 
-    fprintf 'Saved Output File: laney_2017_09 3min. '
+    fprintf 'Saved Output File: albany_2018_02 3min. '
 
-% laney 2017/10
+% albany 2018/03
 
-    BeaconDataTable = upload('/global/home/users/mfutterman/mycondo/beacondata/laney/data/2017_10');
-
-    fprintf 'Upload Complete'
-
-    RawData = minuteAvg(BeaconDataTable);
-
-    fprintf 'Avg Complete'
-
-    output = output_structure (RawData,WindowWidth);
-    
-    output = plumeData (output);
-    
-    output = weekdaysOnly (output);
-    
-    output = ampm (output);
-    
-    output = plumeDataWeekdays (output);
-    
-    output = plumeDataWkdyAMPM (output);
-
-    save('/global/home/users/mfutterman/matlab/beacon/results/results_8_28/laney_2017_10_3min.mat','output')
-
-    fprintf 'Saved Output File: laney_2017_10 3min. '
-
-% laney 2017/11
-
-    BeaconDataTable = upload('/global/home/users/mfutterman/mycondo/beacondata/laney/data/2017_11');
+    BeaconDataTable = upload('/global/home/users/mfutterman/mycondo/beacondata/albany/data/2018_03');
 
     fprintf 'Upload Complete'
 
@@ -106,60 +55,9 @@ WindowWidth = [750];
     
     output = plumeDataWkdyAMPM (output);
 
-    save('/global/home/users/mfutterman/matlab/beacon/results/results_8_28/laney_2017_11_3min.mat','output')
+    save('/global/home/users/mfutterman/matlab/beacon/results/results_8_28/albany_2018_03_3min.mat','output')
 
-    fprintf 'Saved Output File: laney_2017_11 3min. '
+    fprintf 'Saved Output File: albany_2018_03 3min. '
     
- % laney 2017/12
-
-    BeaconDataTable = upload('/global/home/users/mfutterman/mycondo/beacondata/laney/data/2017_12');
-
-    fprintf 'Upload Complete'
-
-    RawData = minuteAvg(BeaconDataTable);
-
-    fprintf 'Avg Complete'
-
-    output = output_structure (RawData,WindowWidth);
-    
-    output = plumeData (output);
-    
-    output = weekdaysOnly (output);
-    
-    output = ampm (output);
-    
-    output = plumeDataWeekdays (output);
-    
-    output = plumeDataWkdyAMPM (output);
-
-    save('/global/home/users/mfutterman/matlab/beacon/results/results_8_28/laney_2017_12_3min.mat','output')
-
-    fprintf 'Saved Output File: laney_2017_12 3min. '
-
-% laney 2018/01
-
-    BeaconDataTable = upload('/global/home/users/mfutterman/mycondo/beacondata/laney/data/2018_01');
-
-    fprintf 'Upload Complete'
-
-    RawData = minuteAvg(BeaconDataTable);
-
-    fprintf 'Avg Complete'
-
-    output = output_structure (RawData,WindowWidth);
-    
-    output = plumeData (output);
-    
-    output = weekdaysOnly (output);
-    
-    output = ampm (output);
-    
-    output = plumeDataWeekdays (output);
-    
-    output = plumeDataWkdyAMPM (output);
-
-    save('/global/home/users/mfutterman/matlab/beacon/results/results_8_28/laney_2018_01_3min.mat','output')
-
-    fprintf 'Saved Output File: laney_2018_01 3min. '    
     
 exit 
