@@ -5,34 +5,7 @@ fprintf 'Path added'
 
 WindowWidth = [750];
 
-  
-   
-% laney 2017/07
-
-    BeaconDataTable = upload('/global/home/users/mfutterman/mycondo/beacondata/laney/data/2017_07');
-
-    fprintf 'Upload Complete'
-
-    RawData = minuteAvg(BeaconDataTable);
-
-    fprintf 'Avg Complete'
-
-    output = output_structure (RawData,WindowWidth);
-    
-    output = plumeData (output);
-    
-    output = weekdaysOnly (output);
-    
-    output = ampm (output);
-    
-    output = plumeDataWeekdays (output);
-    
-    output = plumeDataWkdyAMPM (output);
-
-    save('/global/home/users/mfutterman/matlab/beacon/results/results_8_28/laney_2017_07_3min.mat','output')
-
-    fprintf 'Saved Output File: laney_2017_07 3min. '
-    
+     
 % laney 2017/08
 
     BeaconDataTable = upload('/global/home/users/mfutterman/mycondo/beacondata/laney/data/2017_08');
