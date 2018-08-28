@@ -1,6 +1,6 @@
 function dataSet = weekdaysOnly (dataSet)
 % separate weekdays
-daynums = weekday (dataSet.Width500.time);
+daynums = weekday (dataSet.Width750.time);
 tuesdays = find (daynums == 3);
 wednesdays = find (daynums == 4);
 thursdays = find (daynums == 5);
